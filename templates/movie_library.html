@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ghost
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="seen_movies_list">
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th colspan="2">Title</th>
+                    <th>Genre</th>
+                    <th>Runtime(min)</th>
+                    <th>Release Date</th>
+                    <th>Rating 0-10</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                {% for m in movies %}
+                <form method="POST" action="{{ url_for('delete_movies') }}">
+                <tr>
+                        <td name="movieid">{{ m[0] }}</td>
+                        <td colspan="2">{{ m[1] }}</td>
+                        <td>{{ m[2] }}</td>
+                        <td>{{ m[3] }}</td>
+                        <td>{{ m[4] }}</td>
+                        <td>{{ m[5] }}</td>
+                        <td>{{ m[6] }}</td>
+                        <td><input type="submit" value="delete"></td>
+                        <td><input type="submit" value="edit"></td>
+                    </tr>
+                </form>
+                {% endfor %}
+            </table>
+
+            <h1 class="some-info">You have spent <span style="font-weight: bold;">{{ time }}</span> hours watching movies, well done.</h1>
+        </div>
+    </div>
+{% endblock %}
