@@ -20,17 +20,17 @@
                 </tr>
 
                 {% for m in movies %}
-                <form method="POST" action="{{ url_for('delete_movies') }}">
+                <form method="post" action="{{ url_for('removemovie') }}">
                 <tr>
-                        <td name="movieid">{{ m[0] }}</td>
+                        <td>{{ m[0] }}</td>
                         <td colspan="2">{{ m[1] }}</td>
                         <td>{{ m[2] }}</td>
                         <td>{{ m[3] }}</td>
                         <td>{{ m[4] }}</td>
                         <td>{{ m[5] }}</td>
                         <td>{{ m[6] }}</td>
-                        <td><input type="submit" value="delete"></td>
-                        <td><input type="submit" value="edit"></td>
+                        <td><button type="submit" value="{{ m[0] }}" name="movieid">DELETE</button></td>
+                        <td><button type="submit" value="{{ m[0] }}" name="movieid">EDIT</button></td>
                     </tr>
                 </form>
                 {% endfor %}

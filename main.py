@@ -43,8 +43,8 @@ def about():
     return render_template("about.html")
 
 
-@app.route('/insert_movies', methods=['POST'])
-def insert_movies():
+@app.route('/insertmovie', methods=['POST'])
+def insertmovie():
     con = db()
     cursor = con.cursor()
 
@@ -55,13 +55,13 @@ def insert_movies():
     con.close()
     return redirect(url_for("movies"))
 
-@app.route('/delete_movies', methods=['POST'])
-def delete_movies():
+@app.route('/removemovie', methods=['POST'])
+def removemovie():
     con = db()
     cursor = con.cursor()
 
-    cursor.execute("""DELETE FROM movielist WHERE ID=%s""",
-                   (request.form['movieid']))
+    cursor.execute("DELETE FROM movielist WHERE id='"+request.form['movieid']+"'")
+
     cursor.close()
     con.commit()
     con.close()
