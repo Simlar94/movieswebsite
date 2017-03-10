@@ -5,8 +5,9 @@ import mysql.connector
 
 app = Flask(__name__)
 
+
 def db():
-    con = mysql.connector.connect(user='alsoa', password='blomman123', host='192.168.48.244', database='watchedmovies')
+    con = mysql.connector.connect(user='alsoa', password='password123', host='192.168.48.244', database='watchedmovies')
     return con
 
 @app.route("/")
@@ -42,6 +43,18 @@ def movies():
 def about():
     return render_template("about.html")
 
+@app.route("/editmovie", methods = ['POST'])
+def editmovie():
+    con = db()
+    cursor = con.cursor()
+
+    cursor.execute("SELECT * FROM movielist WHERE id='"+request.form['i_edit']+"'")
+    movie_details = cursor.fetchall()
+    cursor.close()
+    con.commit()
+    con.close()
+
+    return render_template("editmovie.html",movie_details=movie_details)
 
 @app.route('/insertmovie', methods=['POST'])
 def insertmovie():
@@ -66,6 +79,20 @@ def removemovie():
     con.commit()
     con.close()
     return redirect(url_for("movies"))
+
+@app.route('/updatemovie', methods=['POST'])
+def updatemovie():
+    con = db()
+    cursor = con.cursor()
+
+    cursor.execute("UPDATE movielist SET name='"+request.form['i_name']+"', genre='"+request.form['i_genre']+"', runtime='"+\
+                    request.form['i_runtime']+"', releasedate='"+request.form['i_release_date']+"', rating='"+request.form['i_rating']+"'\
+                    WHERE id='"+request.form['movieid']+"'")
+
+    cursor.close()
+    con.commit()
+    con.close()
+    return redirect(url_for('movies'))
 
 
 if __name__ == "__main__":

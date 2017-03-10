@@ -254,3 +254,10 @@ tr .movie_list_id {
 .some-info {
     margin-top: 100px;
 }
+
+tr button  {
+    color: #bb271b;
+    font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    background-color: transparent;
+}
