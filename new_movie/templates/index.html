@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ghost
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="content">
+            <div class="col-md-8">
+                <h1 class="digital">Digital</h1>
+                <p class="sub_digital">Keep track of the movies you have watched, your favorite genre and much more.</p>
+
+                <a href="{{ url_for('add_movie') }}">Add Movie</a>
+                <a href="{{ url_for('movies') }}">Seen Movies</a>
+            </div>
+        </div>
+        <div class="bottom">
+            <img src="../static/img/bg.png" style="width: 100%; opacity: 0.9;">
+        </div>
+    </div>
+{% endblock %}
