@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Watched movies</title>
+
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+                <form method="post" action="{{ url_for('insertuser') }}">
+                    <ul>
+                        <li>Username</li>
+                        <input type="text" name="u_username" required />
+                        <li>Password</li>
+                        <input type="password" name="u_password" required />
+                    </ul>
+                    <input type="submit" value="Create user">
+                </form>
+
+</body>
+</html>

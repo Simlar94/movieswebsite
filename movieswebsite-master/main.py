@@ -12,7 +12,7 @@ def db():
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("login.html")
 
 @app.route("/add_movie")
 def add_movie():
@@ -43,18 +43,18 @@ def movies():
 def about():
     return render_template("about.html")
 
-@app.route("/edit/<editmovie>")
-def edit(editmovie):
+@app.route("/editmovie", methods = ['POST'])
+def editmovie():
     con = db()
     cursor = con.cursor()
 
-    cursor.execute("SELECT name, genre, runtime, releasedate, rating FROM movielist WHERE id="+editmovie)
-    editvar = cursor.fetchone()
+    cursor.execute("SELECT * FROM movielist WHERE id='"+request.form['i_edit']+"'")
+    movie_details = cursor.fetchall()
     cursor.close()
     con.commit()
     con.close()
 
-    return render_template("update_movie.html",editmovie=editvar)
+    return render_template("editmovie.html",movie_details=movie_details)
 
 @app.route('/insertmovie', methods=['POST'])
 def insertmovie():
@@ -80,22 +80,55 @@ def removemovie():
     con.close()
     return redirect(url_for("movies"))
 
-@app.route('/updatemovie/<editmovie>')
-def updatemovie(editmovie):
-    print("updatemovie...")+request.form['movieid']
-    e = (request.form['i_name'],request.form['i_genre'], request.form['i_runtime'], request.form['i_release_date'], request.form['i_rating'], True)
+@app.route('/updatemovie', methods=['POST'])
+def updatemovie():
     con = db()
     cursor = con.cursor()
 
-    cursor.execute("UPDATE movielist SET name='"+request.form['i_name']+"',genre='"+request.form['i_genre']+"', runtime='"+\
-                    request.form['i_runtime']+"', releasedate='"+request.form['i_release_date']+"', rating='"+request.form['i_rating']+"'+\
-                    WHERE id="+editmovie)
+    cursor.execute("UPDATE movielist SET name='"+request.form['i_name']+"', genre='"+request.form['i_genre']+"', runtime='"+\
+                    request.form['i_runtime']+"', releasedate='"+request.form['i_release_date']+"', rating='"+request.form['i_rating']+"'\
+                    WHERE id='"+request.form['movieid']+"'")
 
     cursor.close()
     con.commit()
     con.close()
-    return render_template("edit", edit=e)
+    return redirect(url_for('movies'))
 
+@app.route('/signup')
+def signup():
+
+    return render_template("signup.html")
+
+@app.route('/insertuser', methods=['POST'])
+def insertuser():
+    con = db()
+    cursor = con.cursor()
+
+    cursor.execute("INSERT INTO users (user_username, user_password) VALUES (%s, %s)",
+                   (request.form['u_username'], request.form['u_password']))
+    cursor.close()
+    con.commit()
+    con.close()
+    return render_template('login.html')
+
+
+@app.route('/loginuser', methods=['POST'])
+def loginuser():
+    con = db()
+    cursor = con.cursor()
+
+
+    cursor.execute("SELECT * FROM users where user_username ='" + request.form['u_username'] + "' and user_password ='" + request.form['u_password'] + "'")
+    data = cursor.fetchone()
+
+    cursor.close()
+    con.commit()
+    con.close()
+
+    if data is None:
+        return "Username or password is wrong"
+    else:
+        return render_template('index.html')
 
 if __name__ == "__main__":
     app.run()

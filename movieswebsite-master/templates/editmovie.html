@@ -6,6 +6,28 @@
 
 {% block body %}
 
-
+    <h1>Edit Movie.</h1>
+     <div class="add_movie_content col-md-4">
+            <div>
+                <form method="post" action="{{ url_for('updatemovie') }}">
+                    <ul>
+                        {% for d in movie_details %}
+                            <li>Title</li>
+                            <input type="text" name="i_name" value="{{ d[1] }}" required />
+                            <li>Genre</li>
+                            <input type="text" name="i_genre" value="{{ d[2] }}" required />
+                            <li>Runtime</li>
+                            <input type="number" name="i_runtime" value="{{ d[3] }}" required />
+                            <li>Release Date</li>
+                            <input type="text" name="i_release_date" value="{{ d[4] }}" required />
+                            <li>Rating 0-10</li>
+                            <input type="text" name="i_rating" value="{{ d[5] }}" required />
+                            <button type="submit" name="movieid" value="{{ d[0] }}">Submit</button>
+                            <!--<li><a href="{{ url_for('updatemovie', movieid=d[0]) }}">Submit</a></li>-->
+                        {% endfor %}
+                    </ul>
+                </form>
+            </div>
+        </div>
 
 {% endblock %}
