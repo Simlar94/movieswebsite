@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="header">
+            <nav>
+                <div class="container">
+                    {% if session.logged_in %}
+                    <ul>
+                        <li><img src="{{ url_for('static', filename='img/movie_icon.png') }}" alt=""></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('movies') }}">Library</a></li>
+                        <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
+                    </ul>
+                    {% else %}
+                    <ul>
+                        <li><img src="{{ url_for('static', filename='img/movie_icon.png') }}" alt=""></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('movies') }}">Library</a></li>
+                        <li><a href="{{ url_for('login') }}">Sign In</a></li>
+                        <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                    </ul>
+
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <div class="background">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>

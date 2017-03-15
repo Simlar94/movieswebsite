@@ -1,0 +1,453 @@
+html, body {
+    position: absolute;
+
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+    background: #585858;
+
+   /*
+    background-image: url("");
+    background-size: cover;
+    background-repeat: no-repeat;
+   */
+
+    color: white;
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.alphacoders.com/590/590346.jpg');
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+
+    background-color: rgba(0,0,0,0.7);
+
+}
+
+
+ul {
+    padding: 0;
+}
+
+h1 {
+    margin: 0px;
+}
+
+a {
+    color: white;
+    background: transparent;
+    text-decoration: none;
+
+    /*
+    text-shadow: 0 0 2px white;
+    box-shadow: 0 0 2px white;
+    */
+
+    padding: 10px 14px;
+    margin: 20px 5px;
+
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+a:hover {
+    background: #f3b73a;
+    text-decoration: none;
+    color: white;
+    border: 1px solid #f3b73a;
+}
+
+a:active {
+    position: relative;
+    top: 1px;
+}
+
+/*.btn, .btn:active, .btn:focus {
+    font-size: 24px;
+
+    top: 1px;
+    text-transform: uppercase;
+
+    color: white;
+    background: transparent;
+
+    border: 1px solid white;
+    border-radius: 3px;
+    transition: 0.1s;
+}
+
+.btn:hover {
+    text-transform: uppercase;
+
+    color: black;
+    background: white;
+
+    border: 1px solid white;
+    border-radius: 3px;
+    transition: 0.1s;
+}*/
+
+ul li {
+    list-style-type: none;
+    font-weight: bold;
+}
+
+/*.main_page {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}*/
+
+.bg_image {
+    /*background-image: url('http://www.newhdwallpapers.in/wp-content/uploads/2015/11/Latest-Wall-E-Movie-Wallpaper.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;*/
+
+    height: 100vh;
+    width: 100vw;
+
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.header {
+    display: inline-block;
+
+    position: relative;
+    height: 69px;
+    width: 100%;
+
+    display: inline-block;
+    vertical-align: middle;
+
+    background: transparent;
+}
+
+.header h1 {
+    display: inline-block;
+}
+
+.header ul, .header ul li {
+    display: inline-block;
+    padding: 3px;
+}
+
+.header ul li a {
+    border: 0;
+}
+
+.content {
+    position: relative;
+    margin-top: 200px;
+    width: 100%;
+}
+
+.bottom {
+
+}
+
+.digital {
+    font-weight: bold;
+    font-size: 50px;
+    
+    color: #ec393e;
+}
+
+.sub_digital {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.stats {
+    display: none;
+    text-align: center;
+    
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.stats h1 {
+    font-family: 'Anton', sans-serif;
+}
+
+.stats ul li {
+    text-align: left;
+}
+
+input {
+    border: 2px solid grey;
+    border-radius: 3px;
+
+    padding: 5px 20px;
+    margin-bottom: 5px;
+
+    font-weight: bold;
+
+    color: black;
+    text-align: center;
+}
+
+.add_movie_content {
+    margin: auto;
+    width: 30%;
+    transform: translate(-50%);
+
+    z-index: 1;
+}
+
+.add_movie_beneath {
+    position: absolute;
+    width: 100%;
+}
+
+.add_movie_content div {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateY(+100%);
+
+    width: 100%;
+    border-radius: 3px;
+
+    color: #f3b73a;
+    text-align: left;
+    background: white;
+    padding: 20px;
+}
+
+.add_movie_content ul input {
+    width: 100%;
+    border: 1px solid #cccccc;
+    text-align: left;
+}
+
+.add_movie_content div ul {
+    list-style-type: circle;
+}
+
+.add_movie_content h1 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.btn_style {
+    display: block;
+    width: 100%;
+
+    border: 0;
+    color: white;
+
+    margin: 0;
+    transition: 0.1s;
+    background: #f3b73a;
+    padding: 10px;
+}
+
+.beneath {
+    position: fixed;
+    z-index: 0;
+    opacity: 0.2;
+}
+
+table, th, td {
+    padding: 10px;
+
+    width: 700px;
+}
+
+td img {
+    max-width: 50px;
+    max-height:50px;
+}
+
+.seen_movies_list {
+    display: block;
+    text-align: center;
+    border-radius: 3px;
+    table-layout:fixed;
+
+        background: white;
+    padding: 10px;
+
+    color: #f3b73a;
+
+    margin-top: 20%;
+    max-height:600px;
+    overflow-y:scroll;
+
+    z-index: 10;
+}
+
+#movielists {
+    z-index: 10;
+}
+
+.movies {
+    z-index: 10;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.seen_movies_list table {
+    width: 100%;
+    text-align: left;
+}
+
+.seen_movies_list table tr {
+    background: white;
+}
+
+.seen_movies_list table td {
+}
+
+.seen_movies_list table tr:nth-child(odd) {
+    background: whitesmoke;
+}
+
+.seen_movies_list h1 {
+    background: #ec393e;
+    padding: 10px;
+}
+
+#columns {
+    background: #f3b73a;
+    color: white;
+}
+
+#name {
+    font-weight: bolder;
+}
+
+tr .movie_list_id {
+    width: 30px;
+    max-width: 30px;
+}
+
+.btn_remove {
+    background: #bb271b;
+}
+
+.some-info {
+    margin-top: 100px;
+    z-index: 10;
+}
+
+tr button  {
+    color: white;
+    font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    background-color: #f3b73a;
+
+    border: 0;
+}
+
+.content {
+    z-index: 10;
+}
+
+.content div {
+    text-align: center;
+
+    margin: auto;
+
+    position: relative;
+    transform: translateY(-45%);
+
+    color: white;
+
+}
+
+.content h1 {
+    color: white;
+}
+
+.content a {
+    font-weight: bold;
+}
+
+.content div {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.content p {
+    font-size: 24px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+.header {
+    display: flex;
+
+    font-size: 16px;
+    font-weight: 100;
+    z-index: 10;
+
+    background: #f3b73a;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.header a:hover {
+    color: white;
+
+    border-bottom: 1px solid white;
+    border-radius: 0;
+
+    background: transparent;
+
+}
+
+.header ul li a {
+    padding: 3px 5px 3px 5px;
+}
+
+.header a:active, a:focus {
+    background: transparent;
+    color: white;
+    text-decoration: none;
+}
+
+.header img {
+    width: 50px;
+    height: 50px;
+}
+
+.forms {
+    margin-top: 100px;
+}
+
+.clean {
+    border: 0;
+    color: #f3b73a;
+
+    padding: 0;
+    margin: 0;
+}
+
+.clean:hover {
+    background: white;
+    color: #f3b73a;
+    border: 0;
+}
