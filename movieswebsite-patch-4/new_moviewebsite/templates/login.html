@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+        <div class="container">
+            <div class="add_movie_content">
+                <div>
+                    <h1>Login</h1>
+                    <form method="post" action="{{ url_for('loginuser') }}">
+                        <ul>
+                            <li>Username</li>
+                            <input type="text" name="u_username" required />
+                            <li>Password</li>
+                            <input type="password" name="u_password" required />
+                        </ul>
+                        <input class="btn_style" type="submit" value="Log in">
+                    </form>
+                    <ul>
+                        <li><a class="clean" href="{{ url_for('signup') }}">Signup</a></li>
+                    </ul>
+                </div>
+            </div>
+{% endblock %}

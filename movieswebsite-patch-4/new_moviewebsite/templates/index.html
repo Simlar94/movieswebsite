@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ghost
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="content">
+            <div>
+                <h1 class="digital">TRACK</h1>
+                <p class="sub_digital">The movies you have seen, favourite genre and much more.</p>
+
+                <div>
+                    <a href="{{ url_for('add_movie') }}">ADD MOVIE</a>
+                    <a href="{{ url_for('movies') }}">LIBRARY</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
