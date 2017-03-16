@@ -1,13 +1,13 @@
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import Flask, render_template, url_for, request, redirect, session, flash, wrappers
+
 
 import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = 'Apples'
 
-
 def db():
-    con = mysql.connector.connect(user='monty', password='123', host='192.168.38.103', database='watchedmovies')
+    con = mysql.connector.connect(user='alsoa', password='blomman123', host='192.168.48.244', database='watchedmovies')
     return con
 
 
@@ -15,11 +15,12 @@ def db():
 def home():
     return render_template("index.html")
 
-
 @app.route("/add_movie")
 def add_movie():
-    return render_template("add_movie.html")
-
+    if session['logged_in'] == True:
+        return render_template("add_movie.html")
+    else:
+        return render_template("login.html")
 
 @app.route("/movies")
 def movies():
@@ -28,7 +29,7 @@ def movies():
     cursor = con.cursor()
 
     # Execute and fetch data
-    cursor.execute("SELECT id, name, genre, runtime, releasedate, rating FROM movielist")
+    cursor.execute("SELECT id, name, genre, runtime, releasedate, rating, timeswatched FROM movielist")
     movies = cursor.fetchall()
 
     #Calculate time user have watched movies in hours
@@ -40,8 +41,10 @@ def movies():
     cursor.close()
     con.close()
 
-    return render_template("movie_library.html", movies=movies, time=movie_time)
-
+    if session['logged_in'] == True:
+        return render_template("movie_library.html", movies=movies, time=movie_time)
+    else:
+        return render_template("login.html")
 
 @app.route("/about")
 def about():
@@ -59,7 +62,10 @@ def editmovie():
     con.commit()
     con.close()
 
-    return render_template("editmovie.html",movie_details=movie_details)
+    if session['logged_in'] == True:
+        return render_template("editmovie.html",movie_details=movie_details)
+    else:
+        return render_template("login.html")
 
 
 @app.route('/insertmovie', methods=['POST'])
@@ -67,8 +73,9 @@ def insertmovie():
     con = db()
     cursor = con.cursor()
 
-    cursor.execute("""INSERT INTO movielist (name, genre, runtime, releasedate, rating) VALUES (%s, %s, %s, %s, %s)""",
-                   (request.form['i_name'], request.form['i_genre'], request.form['i_runtime'], request.form['i_release_date'], request.form['i_rating']))
+    cursor.execute("""INSERT INTO movielist (name, genre, runtime, releasedate, rating, timeswatched) VALUES (%s, %s, %s, %s, %s, %s)""",
+                   (request.form['i_name'], request.form['i_genre'], request.form['i_runtime'], request.form['i_release_date'],
+                    request.form['i_rating'], request.form['i_timeswatched']))
     cursor.close()
     con.commit()
     con.close()
@@ -94,7 +101,7 @@ def updatemovie():
     cursor = con.cursor()
 
     cursor.execute("UPDATE movielist SET name='"+request.form['i_name']+"', genre='"+request.form['i_genre']+"', runtime='"+\
-                    request.form['i_runtime']+"', releasedate='"+request.form['i_release_date']+"', rating='"+request.form['i_rating']+"'\
+                    request.form['i_runtime']+"', releasedate='"+request.form['i_release_date']+"', rating='"+request.form['i_rating']+"', timeswatched='"+request.form['i_timeswatched']+"'\
                     WHERE id='"+request.form['movieid']+"'")
 
     cursor.close()
