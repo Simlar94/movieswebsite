@@ -21,23 +21,19 @@ html, body {
 
 .background {
     position: absolute;
-    top: 0;
-    left: 0;
-
     width: 100%;
     height: 100%;
-
     background: url('https://images.alphacoders.com/590/590346.jpg');
     background-position: center;
-    background-size: cover;
+    background-size: 100% auto;
     background-repeat: no-repeat;
-
-    background-color: rgba(0,0,0,0.7);
-
-    z-index: 0;
+    opacity: 0.55;
 
 }
 
+.bg {
+    background-color: rgba(0,0,0,0.7);
+}
 
 ul {
     padding: 0;
@@ -159,7 +155,7 @@ ul li {
 
 .content {
     position: relative;
-    height: 390px;
+    margin-top: 200px;
     width: 100%;
 }
 
@@ -169,9 +165,7 @@ ul li {
 
 .digital {
     font-weight: bold;
-    font-size: 124px;
-    
-    color: #ec393e;
+    font-size: 50px;
 }
 
 .sub_digital {
@@ -369,11 +363,10 @@ tr button  {
 
 .content div {
     text-align: center;
-
+    text-shadow: 2px 1px #f3b73a;
     margin: auto;
 
     position: relative;
-    top: 100%;
     transform: translateY(-45%);
 
     color: white;

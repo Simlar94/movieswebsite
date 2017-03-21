@@ -15,7 +15,7 @@
         <div class="header">
             <nav>
                 <div class="container">
-                    {% if session.logged_in %}
+                    {% if session.username %}
                     <ul>
                         <li><img src="{{ url_for('static', filename='img/movie_icon.png') }}" alt=""></li>
                         <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -36,11 +36,11 @@
             </nav>
         </div>
     </div>
-
-
     <div class="background">
-        {% block body %}
-        {% endblock %}
+
+    <div class="bg"></div>
     </div>
+    {% block body %}
+    {% endblock %}
 </body>
 </html>

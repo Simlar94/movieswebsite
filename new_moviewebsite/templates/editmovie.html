@@ -21,6 +21,8 @@
                                 <input type="text" name="i_release_date" value="{{ d[4] }}" required />
                                 <li>Rating 0-10</li>
                                 <input type="text" name="i_rating" value="{{ d[5] }}" required />
+                                <li>Times Watched</li>
+                                <input type="number" name="i_timeswatched" value="{{ d[6] }}" required />
                                 <button id="edit_submit" class="btn_style" type="submit" name="movieid" value="{{ d[0] }}">Submit</button>
                             {% endfor %}
 
