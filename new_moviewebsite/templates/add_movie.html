@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ghost
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="col-md-4"></div>
+        <div class="add_movie_content">
+            <div>
+                <form method="post" action="{{ url_for('insertmovie') }}">
+                    <ul>
+                        <li>Title</li>
+                        <input type="text" name="i_name" required />
+                        <li>Genre</li>
+                        <input type="text" name="i_genre" required />
+                        <li>Runtime (min)</li>
+                        <input type="number" name="i_runtime" required />
+                        <li>Release Year</li>
+                        <input type="text" name="i_release_date" required />
+                        <li>Rating 0-10</li>
+                        <input type="text" name="i_rating" required />
+                        <li>Times Watched</li>
+                        <input type="text" name="i_timeswatched" required />
+                    </ul>
+                    <input class="btn_style" type="submit" value="Add Movie">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
